@@ -77,6 +77,9 @@ public class Michelle_Autonomous extends OpMode {
 //        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         for (int i = 0; i < 4; i++) {
+            leftMotor.setDirection(DcMotor.Direction.FORWARD);
+            rightMotor.setDirection(DcMotor.Direction.FORWARD);
+
             leftMotor.setPower(1);
             rightMotor.setPower(1);
 
