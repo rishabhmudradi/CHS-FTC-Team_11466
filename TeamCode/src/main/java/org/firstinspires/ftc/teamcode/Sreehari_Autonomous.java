@@ -107,10 +107,29 @@ public class Sreehari_Autonomous extends OpMode {
         telemetry.addData("Status", "Running: " + runtime.toString());
 
         //Write a simple program to make the robot drive in a square!
+        leftMotor.setPower(1);
+        rightMotor.setPower(0);
 
-        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        runtime = new ElapsedTime(10);
+
         leftMotor.setPower(1);
         rightMotor.setPower(1);
+
+        runtime = new ElapsedTime(10);
+
+        leftMotor.setPower(1);
+        rightMotor.setPower(0);
+
+        runtime = new ElapsedTime(10);
+
+        leftMotor.setPower(1);
+        rightMotor.setPower(0);
+
+        runtime = new ElapsedTime(10);
+
+        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //leftMotor.setPower(1);
+        //rightMotor.setPower(1);
 
 
 
