@@ -121,6 +121,7 @@ public class Anjan_Autonomous extends OpMode {
             leftMotor.setTargetPosition(2);
             rightMotor.setTargetPosition(2);
             rightMotor.setPower(-1);
+            leftMotor.setPower(1);
         }
     }
 
