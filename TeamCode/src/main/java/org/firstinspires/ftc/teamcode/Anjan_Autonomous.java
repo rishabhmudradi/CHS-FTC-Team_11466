@@ -111,7 +111,7 @@ public class Anjan_Autonomous extends OpMode {
 
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++) {
             leftMotor.setDirection(DcMotor.Direction.FORWARD);
             rightMotor.setDirection(DcMotor.Direction.FORWARD);
             leftMotor.setTargetPosition(10);
@@ -121,6 +121,7 @@ public class Anjan_Autonomous extends OpMode {
             leftMotor.setTargetPosition(2);
             rightMotor.setTargetPosition(2);
             rightMotor.setPower(-1);
+        }
     }
 
 
