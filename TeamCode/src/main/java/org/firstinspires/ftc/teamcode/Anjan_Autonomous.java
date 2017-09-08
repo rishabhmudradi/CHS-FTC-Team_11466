@@ -110,6 +110,7 @@ public class Anjan_Autonomous extends OpMode {
         //Write a simple program to make the robot drive in a square!
 
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         for (int i = 0; i < 4; i++) {
             leftMotor.setDirection(DcMotor.Direction.FORWARD);
