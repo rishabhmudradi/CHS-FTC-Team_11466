@@ -43,7 +43,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 
-@Autonomous(name="Anjan Autonomous", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
+@Autonomous(name="Mahesh Autonomous", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
 
 public class Mahesh_Autonomous extends OpMode {
     /* Declare OpMode members. */

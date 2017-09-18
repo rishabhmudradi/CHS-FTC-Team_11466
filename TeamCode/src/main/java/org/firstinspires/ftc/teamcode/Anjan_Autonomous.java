@@ -61,10 +61,10 @@ public class Anjan_Autonomous extends OpMode {
     public void init() {
         telemetry.addData("Status", "Initialized");
 
-        leftMotor = hardwareMap.dcMotor.get("name_of_left_motor"); //we would configure this in FTC Robot Controller app
-        rightMotor = hardwareMap.dcMotor.get("name_of_right_motor");
+        //leftMotor = hardwareMap.dcMotor.get("left_motor"); //we would configure this in FTC Robot Controller app
+        //rightMotor = hardwareMap.dcMotor.get("right_motor");
 
-        colorSensor = hardwareMap.colorSensor.get("name_of_color_sensor"); //we would configure the name of the color sensor later in the
+        //colorSensor = hardwareMap.colorSensor.get("color_sensor"); //we would configure the name of the color sensor later in the
         //ftc robot controller
 
 
@@ -72,8 +72,8 @@ public class Anjan_Autonomous extends OpMode {
          * to 'get' must correspond to the names assigned during the robot configuration
          * step (using the FTC Robot Controller app on the phone).
          */
-        // leftMotor  = hardwareMap.dcMotor.get("left_drive");
-        // rightMotor = hardwareMap.dcMotor.get("right_drive");
+        leftMotor  = hardwareMap.dcMotor.get("left_drive");
+        rightMotor = hardwareMap.dcMotor.get("right_drive");
 
         // eg: Set the drive motor directions:
         // Reverse the motor that runs backwards when connected directly to the battery
