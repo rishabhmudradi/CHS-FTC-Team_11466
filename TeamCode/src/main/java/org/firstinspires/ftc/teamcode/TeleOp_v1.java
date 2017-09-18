@@ -79,6 +79,7 @@ public class TeleOp_v1 extends LinearOpMode {
             leftMotor.setPower(-gamepad1.left_stick_y);
             rightMotor.setPower(-gamepad1.right_stick_y);
             //This is a secret message
+
         }
     }
 }
