@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -72,8 +73,8 @@ public class Anjan_Autonomous extends OpMode {
          * to 'get' must correspond to the names assigned during the robot configuration
          * step (using the FTC Robot Controller app on the phone).
          */
-        leftMotor  = hardwareMap.dcMotor.get("left_drive");
-        rightMotor = hardwareMap.dcMotor.get("right_drive");
+        leftMotor  = hardwareMap.dcMotor.get("left_motor");
+        rightMotor = hardwareMap.dcMotor.get("right_motor");
 
         // eg: Set the drive motor directions:
         // Reverse the motor that runs backwards when connected directly to the battery
@@ -111,8 +112,11 @@ public class Anjan_Autonomous extends OpMode {
 
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
+        leftMotor.setDirection(DcMotor.Direction.FORWARD);
+        leftMotor.setPower(1);
+/*
         for (int i = 0; i < 4; i++) {
+            telemetry.addData("Status", "Here: " + runtime.toString());
             leftMotor.setDirection(DcMotor.Direction.FORWARD);
             rightMotor.setDirection(DcMotor.Direction.FORWARD);
             leftMotor.setTargetPosition(10);
@@ -124,6 +128,7 @@ public class Anjan_Autonomous extends OpMode {
             rightMotor.setPower(-1);
             leftMotor.setPower(1);
         }
+        */
     }
 
 
