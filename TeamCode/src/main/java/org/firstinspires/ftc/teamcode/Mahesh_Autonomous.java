@@ -100,6 +100,7 @@ public class Mahesh_Autonomous extends OpMode {
         //this is a way to print to the screen of the iphone app, useful for debugging.
 
         start_time = System.currentTimeMillis();
+        telemetry.addData("Robot starting Will this work?", "");
 
     }
 
@@ -108,39 +109,9 @@ public class Mahesh_Autonomous extends OpMode {
      */
     @Override
     public void loop() {
-
         telemetry.addData("Robot starting Will this work?", "");
-
-        float powerlevel = 0.0f;
-
-        // If we're still with the first 3 seconds after pressing start keep driving forward
-        if (System.currentTimeMillis() < start_time + 3000) {
-            powerlevel = 0.5f;
-        }
-        leftMotor.setPower(powerlevel);
-        rightMotor.setPower(powerlevel);
-
-//        telemetry.addData("Status", "Running: " + runtime.toString());
-//
-//        //Write a simple program to make the robot drive in a square!
-//        leftMotor.setDirection(DcMotor.Direction.REVERSE);
-//        leftMotor.setPower(1);
-//
-//        telemetry.addData("HElla LIT", "SREEEEEEEEE: ");
-//
-//
-//        leftMotor.setPower(1);
-//        rightMotor.setPower(1);
-//
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//
-//        telemetry.addData("DONEEEEEE", "SREEEEEEEEE: ");
-
-
+        leftMotor.setPower(1);
+        rightMotor.setPower(1);
     }
 
 
