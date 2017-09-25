@@ -73,8 +73,8 @@ public class Anjan_Autonomous extends OpMode {
          * to 'get' must correspond to the names assigned during the robot configuration
          * step (using the FTC Robot Controller app on the phone).
          */
-        leftMotor  = hardwareMap.dcMotor.get("left_drive");
-        rightMotor = hardwareMap.dcMotor.get("right_drive");
+        leftMotor  = hardwareMap.dcMotor.get("left_motor");
+        rightMotor = hardwareMap.dcMotor.get("right_motor");
 
         // eg: Set the drive motor directions:
         // Reverse the motor that runs backwards when connected directly to the battery
@@ -109,20 +109,14 @@ public class Anjan_Autonomous extends OpMode {
         telemetry.addData("Status", "Running: " + runtime.toString());
 
         //Write a simple program to make the robot drive in a square!
-        for (int i = 0; i < 4; i++) {
-            telemetry.addData("Status", "Here: " + runtime.toString());
-            leftMotor.setDirection(DcMotor.Direction.FORWARD);
-            rightMotor.setDirection(DcMotor.Direction.FORWARD);
-            leftMotor.setTargetPosition(10);
-            rightMotor.setTargetPosition(10);
+
+        if(getRuntime()>10000){
+            leftMotor.setPower(-1);
+            rightMotor.setPower(-1);
+        } else{
             leftMotor.setPower(1);
             rightMotor.setPower(1);
-            leftMotor.setTargetPosition(2);
-            rightMotor.setTargetPosition(2);
-            rightMotor.setPower(-1);
-            leftMotor.setPower(1);
         }
-
     }
 
 
