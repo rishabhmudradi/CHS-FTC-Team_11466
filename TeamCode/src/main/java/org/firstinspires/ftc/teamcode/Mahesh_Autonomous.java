@@ -4,8 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
+import com.qualcomm.robotcore.hardware.DcMotor;
 /**
  * Created by Anjan Bharadwaj on 9/8/17
  */
@@ -43,7 +44,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 
-@Autonomous(name="Mahesh Autonomous", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
+@Autonomous(name="Mahesh 3 Autonomous", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
 
 public class Mahesh_Autonomous extends OpMode {
     /* Declare OpMode members. */
@@ -51,7 +52,7 @@ public class Mahesh_Autonomous extends OpMode {
     private DcMotor leftMotor = null;
     private DcMotor rightMotor = null;
     private ColorSensor colorSensor = null;
-
+    private double start_time;
     /*
          * Code to run ONCE when the driver hits INIT
          */
@@ -59,10 +60,14 @@ public class Mahesh_Autonomous extends OpMode {
     public void init() {
         telemetry.addData("Status", "Initialized");
 
-        leftMotor = hardwareMap.dcMotor.get("name_of_left_motor"); //we would configure this in FTC Robot Controller app
-        rightMotor = hardwareMap.dcMotor.get("name_of_right_motor");
+        leftMotor = hardwareMap.dcMotor.get("left_drive"); //we would configure this in FTC Robot Controller app
+        rightMotor = hardwareMap.dcMotor.get("right_drive");
 
-        colorSensor = hardwareMap.colorSensor.get("name_of_color_sensor"); //we would configure the name of the color sensor later in the
+        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+
+        //colorSensor = hardwareMap.colorSensor.get("name_of_color_sensor"); //we would configure the name of the color sensor later in the
         //ftc robot controller
 
 
@@ -93,9 +98,9 @@ public class Mahesh_Autonomous extends OpMode {
     public void start() {
 
         //this is a way to print to the screen of the iphone app, useful for debugging.
-        telemetry.addData("Robot starting", "");
-        runtime.reset();
-        loop();
+
+        start_time = System.currentTimeMillis();
+
     }
 
     /*
@@ -103,24 +108,39 @@ public class Mahesh_Autonomous extends OpMode {
      */
     @Override
     public void loop() {
-        telemetry.addData("Status", "Running: " + runtime.toString());
 
-        //Write a simple program to make the robot drive in a square!
+        telemetry.addData("Robot starting Will this work?", "");
 
-        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        float powerlevel = 0.0f;
 
-        for (int i = 0; i < 4; i++) {
-            leftMotor.setDirection(DcMotor.Direction.FORWARD);
-            rightMotor.setDirection(DcMotor.Direction.FORWARD);
-            leftMotor.setTargetPosition(10);
-            rightMotor.setTargetPosition(10);
-            leftMotor.setPower(1);
-            rightMotor.setPower(1);
-            leftMotor.setTargetPosition(2);
-            rightMotor.setTargetPosition(2);
-            rightMotor.setPower(-1);
-            leftMotor.setPower(1);
+        // If we're still with the first 3 seconds after pressing start keep driving forward
+        if (System.currentTimeMillis() < start_time + 3000) {
+            powerlevel = 0.5f;
         }
+        leftMotor.setPower(powerlevel);
+        rightMotor.setPower(powerlevel);
+
+//        telemetry.addData("Status", "Running: " + runtime.toString());
+//
+//        //Write a simple program to make the robot drive in a square!
+//        leftMotor.setDirection(DcMotor.Direction.REVERSE);
+//        leftMotor.setPower(1);
+//
+//        telemetry.addData("HElla LIT", "SREEEEEEEEE: ");
+//
+//
+//        leftMotor.setPower(1);
+//        rightMotor.setPower(1);
+//
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//        telemetry.addData("DONEEEEEE", "SREEEEEEEEE: ");
+
+
     }
 
 
