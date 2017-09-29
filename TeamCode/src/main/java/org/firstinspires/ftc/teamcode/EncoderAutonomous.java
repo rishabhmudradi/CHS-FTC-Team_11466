@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 
-
+//Added a line of code
 @Autonomous(name="Autonomous with Encoder", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
 
 public class EncoderAutonomous extends OpMode {
