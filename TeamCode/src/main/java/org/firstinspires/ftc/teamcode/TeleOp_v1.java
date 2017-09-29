@@ -54,6 +54,9 @@ public class TeleOp_v1 extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
+        leftMotor = hardwareMap.dcMotor.get("left_drive");
+        rightMotor = hardwareMap.dcMotor.get("right_drive");
+
         /* eg: Initialize the hardware variables. Note that the strings used here as parameters
          * to 'get' must correspond to the names assigned during the robot configuration
          * step (using the FTC Robot Controller app on the phone).
@@ -78,8 +81,6 @@ public class TeleOp_v1 extends LinearOpMode {
             // eg: Run wheels in tank mode (note: The joystick goes negative when pushed forwards)
             leftMotor.setPower(-gamepad1.left_stick_y);
             rightMotor.setPower(-gamepad1.right_stick_y);
-            //This is a secret message
-            //v2
         }
     }
 }
