@@ -54,6 +54,7 @@ public class Anjan_Autonomous extends OpMode {
     private DcMotor leftMotor = null;
     private DcMotor rightMotor = null;
     private ColorSensor colorSensor = null;
+    long start_time;
 
     /*
          * Code to run ONCE when the driver hits INIT
@@ -97,6 +98,7 @@ public class Anjan_Autonomous extends OpMode {
 
         //this is a way to print to the screen of the iphone app, useful for debugging.
         telemetry.addData("Robot starting", "");
+        start_time = System.currentTimeMillis();
         runtime.reset();
         loop();
     }
@@ -110,7 +112,7 @@ public class Anjan_Autonomous extends OpMode {
 
         //Write a simple program to make the robot drive in a square!
 
-        if(getRuntime()>10000){
+        if (System.currentTimeMillis() < start_time + 5000) {
             leftMotor.setPower(-1);
             rightMotor.setPower(-1);
         } else{
