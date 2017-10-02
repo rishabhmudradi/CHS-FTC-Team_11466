@@ -20,7 +20,7 @@ public class EncoderAutonomous extends OpMode {
     private DcMotor rightMotor = null;
     private ColorSensor colorSensor = null;
     private double start_time;
-    private int TICKS_PER_REVOLUTION = -1; //TODO FIGURE OUT HOW MANY TICKS PER REVOLUTION FOR OUR SPECIFIC ENCODER
+    private int TICKS_PER_REVOLUTION = 1440; //TODO FIGURE OUT HOW MANY TICKS PER REVOLUTION FOR OUR SPECIFIC ENCODER
     /*
          * Code to run ONCE when the driver hits INIT
          */
