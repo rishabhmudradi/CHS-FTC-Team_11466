@@ -110,7 +110,7 @@ public class Mahesh_Autonomous extends OpMode {
     @Override
     public void loop() {
         telemetry.addData("Robot starting Will this work?", "");
-        leftMotor.setPower(1);
+        leftMotor.setPower(-1);
         rightMotor.setPower(1);
     }
 

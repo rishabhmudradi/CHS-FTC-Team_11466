@@ -102,7 +102,8 @@ public class EncoderAutonomous extends OpMode {
         rightMotor.setPower(0);
     }
     public void DriveForward(double power){
-        leftMotor.setPower(power);
+        //For now, we set leftMotor power to negative because our summer training robot has the left motor facing backwards. TODO: Change this after when we switch robots
+        leftMotor.setPower(-power);
         rightMotor.setPower(power);
     }
     public void TurnLeft(double power){
@@ -117,7 +118,10 @@ public class EncoderAutonomous extends OpMode {
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
      */
     @Override
-    public void init_loop() {}
+    public void init_loop() {
+
+
+    }
 
     /*
      * Code to run ONCE when the driver hits PLAY
@@ -127,6 +131,8 @@ public class EncoderAutonomous extends OpMode {
         //this is a way to print to the screen of the iphone app, useful for debugging.
         start_time = System.currentTimeMillis();
         telemetry.addData("Robot starting Will this work?", "");
+
+        driveForward(1, 5);
 
     }
 
