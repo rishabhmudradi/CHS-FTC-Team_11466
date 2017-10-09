@@ -102,7 +102,8 @@ public class EncoderAutonomous extends OpMode {
         rightMotor.setPower(0);
     }
     public void DriveForward(double power){
-        leftMotor.setPower(power);
+        //For now, we set leftMotor power to negative because our summer training robot has the left motor facing backwards. TODO: Change this after when we switch robots
+        leftMotor.setPower(-power);
         rightMotor.setPower(power);
     }
     public void TurnLeft(double power){
