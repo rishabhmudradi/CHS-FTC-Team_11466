@@ -18,7 +18,7 @@ public class EncoderAutonomous extends OpMode {
     private DcMotor rightMotor = null;
     private ColorSensor colorSensor = null;
     private double start_time;
-    private int TICKS_PER_REVOLUTION = 1440; //TODO FIGURE OUT HOW MANY TICKS PER REVOLUTION FOR OUR SPECIFIC ENCODER
+    private int TICKS_PER_REVOLUTION = 1120; //TODO FIGURE OUT HOW MANY TICKS PER REVOLUTION FOR OUR SPECIFIC ENCODER
     /*
          * Code to run ONCE when the driver hits INIT
          */
@@ -130,7 +130,7 @@ public class EncoderAutonomous extends OpMode {
         //this is a way to print to the screen of the iphone app, useful for debugging.
         start_time = System.currentTimeMillis();
         telemetry.addData("Robot starting Will this work?", "");
-        driveForward(1, 500);
+        driveForward(0.5, 1120);
 
     }
 
@@ -157,6 +157,11 @@ public class EncoderAutonomous extends OpMode {
     @Override
     public void stop() {
 
+    }
+
+    public double convert_to_REV_distance(double inches, double feet) {
+        double conversation_1_foot = 1120;
+        return (inches/12) * conversation_1_foot + feet*conversation_1_foot;
     }
 
 }
