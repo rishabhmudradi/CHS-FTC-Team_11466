@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -36,8 +37,8 @@ public class EncoderAutonomous extends OpMode {
         leftMotor.getTargetPosition(); //use with runToPosition (set where u want ot go to)
         leftMotor.isBusy(); //tells you if it is still running to the position that u set
 
-        leftMotor.setDirection(DcMotor.Direction.REVERSE);
-        rightMotor.setDirection(DcMotor.Direction.FORWARD);
+        leftMotor.setDirection(DcMotor.Direction.FORWARD);
+        rightMotor.setDirection(DcMotor.Direction.REVERSE);
 
         //colorSensor = hardwareMap.colorSensor.get("name_of_color_sensor"); //we would configure the name of the color sensor later in the
         //ftc robot controller
@@ -130,7 +131,7 @@ public class EncoderAutonomous extends OpMode {
         //this is a way to print to the screen of the iphone app, useful for debugging.
         start_time = System.currentTimeMillis();
         telemetry.addData("Robot starting Will this work?", "");
-        driveForward(0.5, 1120);
+        driveForward(0.5, convert_to_REV_distance(0, 7));
 
     }
 
@@ -159,9 +160,9 @@ public class EncoderAutonomous extends OpMode {
 
     }
 
-    public double convert_to_REV_distance(double inches, double feet) {
+    public int convert_to_REV_distance(int inches, int feet) {
         double conversation_1_foot = 1120;
-        return (inches/12) * conversation_1_foot + feet*conversation_1_foot;
+        return (int) ((inches/12) * conversation_1_foot + feet*conversation_1_foot);
     }
 
 }
