@@ -5,13 +5,12 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 
-//Added a line of code
-//Rishabh added another line
-@Autonomous(name="Autonomous with Encoder", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
+@Autonomous(name="Encoder Test", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
 
 public class EncoderAutonomous extends OpMode {
     /* Declare OpMode members. */
@@ -20,7 +19,7 @@ public class EncoderAutonomous extends OpMode {
     private DcMotor rightMotor = null;
     private ColorSensor colorSensor = null;
     private double start_time;
-    private int TICKS_PER_REVOLUTION = 1440; //TODO FIGURE OUT HOW MANY TICKS PER REVOLUTION FOR OUR SPECIFIC ENCODER
+    private int TICKS_PER_REVOLUTION = 1120; //TODO FIGURE OUT HOW MANY TICKS PER REVOLUTION FOR OUR SPECIFIC ENCODER
     /*
          * Code to run ONCE when the driver hits INIT
          */
@@ -38,7 +37,8 @@ public class EncoderAutonomous extends OpMode {
         leftMotor.getTargetPosition(); //use with runToPosition (set where u want ot go to)
         leftMotor.isBusy(); //tells you if it is still running to the position that u set
 
-
+        leftMotor.setDirection(DcMotor.Direction.FORWARD);
+        rightMotor.setDirection(DcMotor.Direction.REVERSE);
 
         //colorSensor = hardwareMap.colorSensor.get("name_of_color_sensor"); //we would configure the name of the color sensor later in the
         //ftc robot controller
@@ -103,8 +103,8 @@ public class EncoderAutonomous extends OpMode {
     }
     public void DriveForward(double power){
         //For now, we set leftMotor power to negative because our summer training robot has the left motor facing backwards. TODO: Change this after when we switch robots
-        leftMotor.setPower(-power);
-        rightMotor.setPower(power);
+        leftMotor.setPower(1);
+        rightMotor.setPower(1);
     }
     public void TurnLeft(double power){
         leftMotor.setPower(-power);
@@ -131,8 +131,7 @@ public class EncoderAutonomous extends OpMode {
         //this is a way to print to the screen of the iphone app, useful for debugging.
         start_time = System.currentTimeMillis();
         telemetry.addData("Robot starting Will this work?", "");
-
-        driveForward(1, 5);
+        driveForward(0.5, convert_to_REV_distance(0, 7));
 
     }
 
@@ -142,8 +141,15 @@ public class EncoderAutonomous extends OpMode {
     @Override
     public void loop() {
         telemetry.addData("Robot starting Will this work?", "");
-        leftMotor.setPower(1);
-        rightMotor.setPower(1);
+//        TurnRightDistance(10, 20);
+//        TurnRightDistance(10, 20);
+//        TurnRightDistance(10, 20);
+//        TurnRightDistance(10, 20);
+//        TurnRightDistance(10, 20);
+//        TurnRightDistance(10, 20);
+//
+//        driveForward(1, 5);
+
     }
 
     /*
@@ -152,6 +158,11 @@ public class EncoderAutonomous extends OpMode {
     @Override
     public void stop() {
 
+    }
+
+    public int convert_to_REV_distance(int inches, int feet) {
+        double conversation_1_foot = 1120;
+        return (int) ((inches/12) * conversation_1_foot + feet*conversation_1_foot);
     }
 
 }

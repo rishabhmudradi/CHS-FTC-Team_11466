@@ -76,10 +76,12 @@ public class TeleOp_v1 extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             telemetry.addData("Status", "Run Time: " + runtime.toString());
+
+
             telemetry.update();
 
             // eg: Run wheels in tank mode (note: The joystick goes negative when pushed forwards)
-            leftMotor.setPower(-gamepad1.left_stick_y);
+            leftMotor.setPower(gamepad1.left_stick_y);
             rightMotor.setPower(-gamepad1.right_stick_y);
         }
     }
