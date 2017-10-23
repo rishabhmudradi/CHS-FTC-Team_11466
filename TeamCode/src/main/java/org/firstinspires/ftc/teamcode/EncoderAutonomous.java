@@ -65,8 +65,8 @@ public class EncoderAutonomous extends OpMode {
         leftMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
         rightMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
 
-        leftMotor.setTargetPosition(-distance);
-        rightMotor.setTargetPosition(distance);
+        leftMotor.setTargetPosition(distance);
+        rightMotor.setTargetPosition(-distance);
 
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -83,8 +83,8 @@ public class EncoderAutonomous extends OpMode {
         leftMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
         rightMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
 
-        leftMotor.setTargetPosition(distance);
-        rightMotor.setTargetPosition(-distance);
+        leftMotor.setTargetPosition(-distance);
+        rightMotor.setTargetPosition(distance);
 
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -131,8 +131,17 @@ public class EncoderAutonomous extends OpMode {
         //this is a way to print to the screen of the iphone app, useful for debugging.
         start_time = System.currentTimeMillis();
         telemetry.addData("Robot starting Will this work?", "");
-        driveForward(0.5, convert_to_REV_distance(0, 7));
+        driveForward(0.5, convert_to_REV_distance(0, 1));
+        TurnRightDistance(0.5, convert_to_REV_distance(0, 1));
 
+        driveForward(0.5, convert_to_REV_distance(0, 1));
+        TurnRightDistance(0.5, convert_to_REV_distance(0, 1));
+
+        driveForward(0.5, convert_to_REV_distance(0, 1));
+        TurnRightDistance(0.5, convert_to_REV_distance(0, 1));
+
+        driveForward(0.5, convert_to_REV_distance(0, 1));
+        TurnRightDistance(0.5, convert_to_REV_distance(0, 1));
     }
 
     /*
