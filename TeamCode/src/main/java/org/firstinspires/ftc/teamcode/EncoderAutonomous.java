@@ -39,6 +39,8 @@ public class EncoderAutonomous extends OpMode {
         leftMotor.isBusy(); //tells you if it is still running to the position that u set
 
         leftMotor.setDirection(DcMotor.Direction.FORWARD);
+
+        //Right motor is reverse because Praneeth put right motor on backwards :/
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
 
         //colorSensor = hardwareMap.colorSensor.get("name_of_color_sensor"); //we would configure the name of the color sensor later in the
