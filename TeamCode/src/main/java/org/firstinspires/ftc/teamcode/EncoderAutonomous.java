@@ -20,6 +20,7 @@ public class EncoderAutonomous extends OpMode {
     private ColorSensor colorSensor = null;
     private double start_time;
     private int TICKS_PER_REVOLUTION = 1120;
+
     /*
          * Code to run ONCE when the driver hits INIT
          */
