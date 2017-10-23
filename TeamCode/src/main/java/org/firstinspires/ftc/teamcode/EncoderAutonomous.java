@@ -19,7 +19,7 @@ public class EncoderAutonomous extends OpMode {
     private DcMotor rightMotor = null;
     private ColorSensor colorSensor = null;
     private double start_time;
-    private int TICKS_PER_REVOLUTION = 1120; //TODO FIGURE OUT HOW MANY TICKS PER REVOLUTION FOR OUR SPECIFIC ENCODER
+    private int TICKS_PER_REVOLUTION = 1120;
     /*
          * Code to run ONCE when the driver hits INIT
          */
@@ -131,17 +131,17 @@ public class EncoderAutonomous extends OpMode {
         //this is a way to print to the screen of the iphone app, useful for debugging.
         start_time = System.currentTimeMillis();
         telemetry.addData("Robot starting Will this work?", "");
-        driveForward(0.5, convert_to_REV_distance(0, 1));
-        TurnRightDistance(0.5, convert_to_REV_distance(0, 1));
+        driveForward(0.25, convert_to_REV_distance(0, 1));
+        TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
 
-        driveForward(0.5, convert_to_REV_distance(0, 1));
-        TurnRightDistance(0.5, convert_to_REV_distance(0, 1));
+        driveForward(0.25, convert_to_REV_distance(0, 1));
+        TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
 
-        driveForward(0.5, convert_to_REV_distance(0, 1));
-        TurnRightDistance(0.5, convert_to_REV_distance(0, 1));
+        driveForward(0.25, convert_to_REV_distance(0, 1));
+        TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
 
-        driveForward(0.5, convert_to_REV_distance(0, 1));
-        TurnRightDistance(0.5, convert_to_REV_distance(0, 1));
+        driveForward(0.25, convert_to_REV_distance(0, 1));
+        TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
     }
 
     /*
@@ -150,14 +150,6 @@ public class EncoderAutonomous extends OpMode {
     @Override
     public void loop() {
         telemetry.addData("Robot starting Will this work?", "");
-//        TurnRightDistance(10, 20);
-//        TurnRightDistance(10, 20);
-//        TurnRightDistance(10, 20);
-//        TurnRightDistance(10, 20);
-//        TurnRightDistance(10, 20);
-//        TurnRightDistance(10, 20);
-//
-//        driveForward(1, 5);
 
     }
 
