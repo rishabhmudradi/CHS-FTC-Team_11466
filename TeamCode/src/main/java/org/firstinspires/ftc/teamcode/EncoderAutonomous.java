@@ -134,16 +134,16 @@ public class EncoderAutonomous extends OpMode {
         //this is a way to print to the screen of the iphone app, useful for debugging.
         start_time = System.currentTimeMillis();
         telemetry.addData("Robot starting Will this work?", "");
-        driveForward(0.25, convert_to_REV_distance(0, 1));
+        driveForward(0.25, convert_to_REV_distance(35,0));
         TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
 
-        driveForward(0.25, convert_to_REV_distance(0, 1));
+        driveForward(0.25, convert_to_REV_distance(35, 0));
         TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
 
-        driveForward(0.25, convert_to_REV_distance(0, 1));
+        driveForward(0.25, convert_to_REV_distance(35, 0));
         TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
 
-        driveForward(0.25, convert_to_REV_distance(0, 1));
+        driveForward(0.25, convert_to_REV_distance(35, 0));
         TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
     }
 
