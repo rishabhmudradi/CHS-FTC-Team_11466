@@ -13,6 +13,21 @@ import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Gyroscope;
+import com.qualcomm.robotcore.hardware.IntegratingGyroscope;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+
 import static java.lang.Thread.sleep;
 
 
@@ -153,7 +168,14 @@ public class Autonomous_ColorRed extends OpMode{
 
     public void callibrate() {
         //turn through an angle of 120 until we find the color
+        double dir = Double.parseDouble(formatFloat(modernRoboticsI2cGyro.getAngularVelocity(AngleUnit.DEGREES).zRotationRate));
+        double MAX_ANGLE = dir + 90;
 
+        while (dir < MAX_ANGLE) {
+            TurnRight(0.1);
+            dir = Double.parseDouble(formatFloat(modernRoboticsI2cGyro.getAngularVelocity(AngleUnit.DEGREES).zRotationRate));
+
+        }
 
 
     }
@@ -258,6 +280,16 @@ public class Autonomous_ColorRed extends OpMode{
 
 
     }
+    String formatRaw(int rawValue) {
+        return String.format("%d", rawValue);
+    }
 
+    String formatRate(float rate) {
+        return String.format("%.3f", rate);
+    }
+
+    String formatFloat(float rate) {
+        return String.format("%.3f", rate);
+    }
 
 }
