@@ -1,23 +1,26 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import android.graphics.Color;
+import android.view.View;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorController;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
+import com.qualcomm.robotcore.hardware.NormalizedRGBA;
+import com.qualcomm.robotcore.hardware.SwitchableLight;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
 
-@Autonomous(name="Encoder Test", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
+@TeleOp(name = "Sensor: Color", group = "Sensor") // @Autonomous(...) is the other common choice
 
-public class EncoderAutonomous extends OpMode {
+public class Autonomous_ColorRed extends OpMode{
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftMotor = null;
     private DcMotor rightMotor = null;
-    private ColorSensor colorSensor = null;
+    NormalizedColorSensor colorSensor;
+    View relativeLayout;
     private double start_time;
     private int TICKS_PER_REVOLUTION = 1120;
 
@@ -117,56 +120,95 @@ public class EncoderAutonomous extends OpMode {
         leftMotor.setPower(power);
         rightMotor.setPower(-power);
     }
-    /*
-     * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
-     */
+    //Pass in true for right, false for right
+    public void hitBall(boolean direction){
+
+    }
     @Override
     public void init_loop() {
 
 
     }
-
-    /*
-     * Code to run ONCE when the driver hits PLAY
-     */
     @Override
     public void start() {
         //this is a way to print to the screen of the iphone app, useful for debugging.
         start_time = System.currentTimeMillis();
         telemetry.addData("Robot starting Will this work?", "");
-        driveForward(0.25, convert_to_REV_distance(35,0));
         TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
+        while(true) {
+            try {
+                switch (getColor()) {
+                    case "Red":
+                        hitBall(true);
+                        break;
+                    case "Blue":
+                        hitBall(true);
+                        break;
+                    case "Neither":
+                        hitBall(true);
+                        break;
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
-        driveForward(0.25, convert_to_REV_distance(35, 0));
-        TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
-
-        driveForward(0.25, convert_to_REV_distance(35, 0));
-        TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
-
-        driveForward(0.25, convert_to_REV_distance(35, 0));
-        TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
     }
-
-    /*
-     * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
-     */
     @Override
     public void loop() {
         telemetry.addData("Robot starting Will this work?", "");
 
     }
-
-    /*
-     * Code to run ONCE after the driver hits STOP
-     */
     @Override
     public void stop() {
 
     }
-
     public int convert_to_REV_distance(int inches, int feet) {
         double conversation_1_foot = 1120;
         return (int) ((inches/12) * conversation_1_foot + feet*conversation_1_foot);
     }
+
+    protected String getColor() throws InterruptedException {
+
+        // values is a reference to the hsvValues array.
+        float[] hsvValues = new float[3];
+        final float values[] = hsvValues;
+
+        boolean bPrevState = false;
+        boolean bCurrState = false;
+
+        colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_color");
+
+        if (colorSensor instanceof SwitchableLight) {
+            ((SwitchableLight)colorSensor).enableLight(true);
+        }
+
+            bCurrState = gamepad1.x;
+
+            bPrevState = bCurrState;
+            NormalizedRGBA colors = colorSensor.getNormalizedColors();
+
+            Color.colorToHSV(colors.toColor(), hsvValues);
+            int color = colors.toColor();
+
+            float max = Math.max(Math.max(Math.max(colors.red, colors.green), colors.blue), colors.alpha);
+
+            double ratio = colors.red / colors.blue;
+            if(ratio >= 0.15 && ratio <= 1.3) {
+                telemetry.addLine("Blue");
+                return "Blue";
+
+            } else if(ratio > 1.7 && ratio <= 3.5) {
+                telemetry.addLine("Red");
+                return "Red";
+
+            } else {
+                telemetry.addLine("Neither");
+                return "Neither";
+            }
+
+
+    }
+
 
 }
