@@ -153,6 +153,9 @@ public class Autonomous_ColorRed extends OpMode{
 
     public void callibrate() {
         //turn through an angle of 120 until we find the color
+
+
+
     }
 
 
