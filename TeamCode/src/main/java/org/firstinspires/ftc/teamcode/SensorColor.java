@@ -41,7 +41,7 @@ import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 
-@TeleOp(name = "Sensor: Color", group = "Sensor")
+@TeleOp(name = "Sensor Color 1", group = "Sensor")
 public class SensorColor extends LinearOpMode {
 
   NormalizedColorSensor colorSensor;
