@@ -34,15 +34,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
-/*
- * This is an example LinearOpMode that shows how to use
- * a REV Robotics Touch Sensor.
- *
- * It assumes that the touch sensor is configured with a name of "digitalTouch".
- *
- * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list.
- */
+
 @Autonomous(name = "Sensor: Digital touch", group = "Sensor")
 public class SensorDigitalTouch extends LinearOpMode {
     /**

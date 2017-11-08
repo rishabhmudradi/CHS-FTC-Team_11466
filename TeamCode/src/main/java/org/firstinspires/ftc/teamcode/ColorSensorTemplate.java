@@ -46,17 +46,7 @@ import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 //import org.firstinspires.ftc.robotcore.internal.AppUtil;
 
-/*
- * This is an example LinearOpMode that shows how to use a color sensor in a generic
- * way, insensitive which particular make or model of color sensor is used. The opmode
- * assumes that the color sensor is configured with a name of "color sensor".
- *
- * If the color sensor has a light which is controllable, you can use the X button on
- * the gamepad to toggle the light on and off.
- *
- * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
- */
+
 @TeleOp(name = "Sensor: Color", group = "Sensor")
 @Disabled
 public class ColorSensorTemplate extends LinearOpMode {

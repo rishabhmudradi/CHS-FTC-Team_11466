@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 /**
- * Created by Tejas Narayanan on 11/30/16.
+ * Created by Anjan Bharadwaj on 11/07/17.
  */
 @Autonomous(name= "Gyro Test", group = "Autonomous")
 public class GyroTest extends LinearOpMode {

@@ -51,7 +51,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 @TeleOp(name="Template: Linear OpMode v1", group="Linear Opmode")  // @Autonomous(...) is the other common choice
-public class TeleOp_v1 extends LinearOpMode {
+public class TESTERTeleOp extends LinearOpMode {
 
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
