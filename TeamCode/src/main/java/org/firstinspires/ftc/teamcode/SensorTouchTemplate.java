@@ -36,7 +36,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 
 @Autonomous(name = "Sensor: Digital touch", group = "Sensor")
-public class SensorDigitalTouch extends LinearOpMode {
+public class SensorTouchTemplate extends LinearOpMode {
     /**
      * The REV Robotics Touch Sensor
      * is treated as a digital channel.  It is HIGH if the button is unpressed.

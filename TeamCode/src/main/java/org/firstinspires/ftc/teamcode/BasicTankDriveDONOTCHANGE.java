@@ -11,7 +11,7 @@ Created by anjanbharadwaj on 11/7/2017
  */
 
 @TeleOp(name="Basic Tank Drive Tele-Op", group="Linear Opmode")  // @Autonomous(...) is the other common choice
-public class Basic_TankDrive_TeleOp extends LinearOpMode {
+public class BasicTankDriveDONOTCHANGE extends LinearOpMode {
 
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
