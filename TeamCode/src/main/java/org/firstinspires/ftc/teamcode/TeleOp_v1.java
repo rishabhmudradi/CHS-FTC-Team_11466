@@ -81,9 +81,6 @@ public class TeleOp_v1 extends LinearOpMode {
     DcMotor rightMotor  = null;
 
 
-
-
-
     @Override
     public void runOpMode() throws InterruptedException {
         /*
