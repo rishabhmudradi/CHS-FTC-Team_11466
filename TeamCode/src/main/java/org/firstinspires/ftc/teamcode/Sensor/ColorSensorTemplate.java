@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Sensor;
 
 import android.app.Activity;
 import android.graphics.Color;
