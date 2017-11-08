@@ -225,11 +225,18 @@ public class TESTERTeleOp extends LinearOpMode {
         return (int) ((inches/12) * conversation_1_foot + feet*conversation_1_foot);
     }
 
+    public void turnTo(double degrees){
+        int turnBy = -1;                 //turns clockwise
 
+        if(degrees < gyro.getHeading()){
+            turnBy *= -1;
+        }
 
-
-
-
+        while(degrees != gyro.getHeading()){
+            leftMotor.setPower(-turnBy);
+            rightMotor.setPower(turnBy);
+        }
+    }
 
 
 }
