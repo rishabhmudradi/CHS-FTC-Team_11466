@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.util.Range;
 /**
  * Created by Sreehari Ram Mohan on 11/07/17.
  */
+//TODO: TEST THIS ON THURSDAY
 @Autonomous(name= "Gyro Test", group = "Autonomous")
 public class GyroTest extends LinearOpMode {
 
