@@ -41,7 +41,8 @@ public class GyroAndEncoder extends LinearOpMode {
          */
 
         gyro = hardwareMap.gyroSensor.get("sensor_gyro");
-
+        leftMotor = hardwareMap.dcMotor.get("left_drive");
+        rightMotor = hardwareMap.dcMotor.get("right_drive");
         gyro.calibrate();
 
         // eg: Set the drive motor directions:
@@ -69,11 +70,9 @@ public class GyroAndEncoder extends LinearOpMode {
     }
     public void turnTo(double degrees){
         int turnBy = -1;                 //turns clockwise
-
         if(degrees < gyro.getHeading()){
             turnBy *= -1;
         }
-
         while(degrees != gyro.getHeading()){
             leftMotor.setPower(-turnBy);
             rightMotor.setPower(turnBy);
