@@ -18,7 +18,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import static java.lang.Thread.sleep;
 
 
-@TeleOp(name = "Blue", group = "Autonomous Version:") // @Autonomous(...) is the other common choice
+@TeleOp(name = "Blue", group = "Autonomous Version:")
 
 public class Autonomous_ColorBlue extends OpMode{
     /* Declare OpMode members. */
@@ -31,13 +31,8 @@ public class Autonomous_ColorBlue extends OpMode{
     private int TICKS_PER_REVOLUTION = 1120;
     IntegratingGyroscope gyro;
     ModernRoboticsI2cGyro modernRoboticsI2cGyro;
-
-    // A timer helps provide feedback while calibration is taking place
     ElapsedTime timer = new ElapsedTime();
 
-    /*
-         * Code to run ONCE when the driver hits INIT
-         */
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
@@ -95,42 +90,7 @@ public class Autonomous_ColorBlue extends OpMode{
         leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-    public void TurnLeftDistance(double power, int distance){
-        leftMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
-        rightMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
 
-        leftMotor.setTargetPosition(distance);
-        rightMotor.setTargetPosition(-distance);
-
-        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        TurnLeft(power);
-        while(leftMotor.isBusy() && rightMotor.isBusy()){
-
-        }
-        StopDriving();
-
-        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    }
-    public void TurnRightDistance(double power, int distance){
-        leftMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
-        rightMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
-
-        leftMotor.setTargetPosition(-distance);
-        rightMotor.setTargetPosition(distance);
-
-        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        TurnRight(power);
-        while(leftMotor.isBusy() && rightMotor.isBusy()){
-
-        }
-        StopDriving();
-
-        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    }
     public void StopDriving(){
         leftMotor.setPower(0);
         rightMotor.setPower(0);
@@ -164,7 +124,6 @@ public class Autonomous_ColorBlue extends OpMode{
 
         }
 
-
     }
 
 
@@ -183,7 +142,6 @@ public class Autonomous_ColorBlue extends OpMode{
 
         //
 
-        TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
         while(true) {
             try {
                 String color = getColor();
