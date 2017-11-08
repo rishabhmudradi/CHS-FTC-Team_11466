@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Sensor;
+package org.firstinspires.ftc.teamcode.AutonomousCode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
