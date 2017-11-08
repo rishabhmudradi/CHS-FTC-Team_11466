@@ -108,7 +108,29 @@ public class TESTERTeleOp extends LinearOpMode {
 
 
     }
+    public void driveForward(double power, int distance){
+        leftMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
+        rightMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
 
+        leftMotor.setTargetPosition(distance);
+        rightMotor.setTargetPosition(distance);
+
+        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        go(power);
+        while(leftMotor.isBusy() && rightMotor.isBusy()){
+
+        }
+        StopDriving();
+
+        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+    public void go(double power){
+        //For now, we set leftMotor power to negative because our summer training robot has the left motor facing backwards. TODO: Change this after when we switch robots
+        leftMotor.setPower(power);
+        rightMotor.setPower(power);
+    }
     public void StopDriving(){
         leftMotor.setPower(0);
         rightMotor.setPower(0);
