@@ -96,6 +96,7 @@ public class TESTERTeleOp extends LinearOpMode {
         // Put a hold after each turn
 
         rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //gyroDrive(DRIVE_SPEED, 12.0, 90.0);    // Drive FWD 48 inches
         gyroTurn(TURN_SPEED, 65);         // Turn  CCW to -45 Degrees
