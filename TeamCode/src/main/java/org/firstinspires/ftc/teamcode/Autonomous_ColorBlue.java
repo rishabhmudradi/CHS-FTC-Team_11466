@@ -137,8 +137,8 @@ public class Autonomous_ColorBlue extends OpMode{
     }
     public void DriveForward(double power){
         //For now, we set leftMotor power to negative because our summer training robot has the left motor facing backwards. TODO: Change this after when we switch robots
-        leftMotor.setPower(1);
-        rightMotor.setPower(1);
+        leftMotor.setPower(power);
+        rightMotor.setPower(power);
     }
     public void TurnLeft(double power){
         leftMotor.setPower(-power);
