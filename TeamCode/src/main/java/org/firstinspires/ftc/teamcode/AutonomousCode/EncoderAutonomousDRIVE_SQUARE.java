@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.AutonomousCode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 @Autonomous(name="Encoder Test", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
 
-public class EncoderAutonomous extends OpMode {
+public class EncoderAutonomousDRIVE_SQUARE extends OpMode {
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftMotor = null;
