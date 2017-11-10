@@ -81,6 +81,7 @@ public class BasicTankDriveDONOTCHANGE extends LinearOpMode {
     public void wait(double seconds){
         double time = this.time;
         while(this.time - time < seconds){
+
             //does nothing, purpose is to wait a certain amount of seconds
         }
     }

@@ -81,7 +81,7 @@ public class GyroTest extends LinearOpMode {
         telemetry.addData("In the turnTo Method", gyro.getHeading()+"");
         telemetry.update();
 
-        while(degrees > gyro.getHeading() && opModeIsActive()){
+        while((degrees - 4.6) > gyro.getHeading() && opModeIsActive()){
             leftMotor.setPower(-0.25);
             rightMotor.setPower(0.25);
         }
