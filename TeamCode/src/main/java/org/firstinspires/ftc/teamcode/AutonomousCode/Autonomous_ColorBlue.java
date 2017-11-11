@@ -4,12 +4,14 @@ import android.graphics.Color;
 import android.view.View;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IntegratingGyroscope;
 import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -20,7 +22,7 @@ import static java.lang.Thread.sleep;
 
 @TeleOp(name = "Blue", group = "Autonomous Version:")
 
-public class Autonomous_ColorBlue extends OpMode{
+public class Autonomous_ColorBlue extends LinearOpMode {
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftMotor = null;
@@ -33,8 +35,17 @@ public class Autonomous_ColorBlue extends OpMode{
     ModernRoboticsI2cGyro modernRoboticsI2cGyro;
     ElapsedTime timer = new ElapsedTime();
 
+    static final double INCREMENT   = 0.01;     // amount to slew servo each CYCLE_MS cycle
+    static final int    CYCLE_MS    =   50;     // period of each cycle
+    static final double MAX_POS     =  1.0;     // Maximum rotational position
+    static final double MIN_POS     =  0.0;     // Minimum rotational position
+
+    // Define class members
+    Servo servo;
+    double  position = 0; // Start at halfway position
+    boolean rampUp = true;
     @Override
-    public void init() {
+    public void runOpMode() throws InterruptedException {
         telemetry.addData("Status", "Initialized");
 
         leftMotor = hardwareMap.dcMotor.get("left_drive"); //we would configure this in FTC Robot Controller app
@@ -54,6 +65,7 @@ public class Autonomous_ColorBlue extends OpMode{
 
         //Right motor is reverse because Praneeth put right motor on backwards :/
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
+        servo.setPosition(90);
 
         //colorSensor = hardwareMap.colorSensor.get("name_of_color_sensor"); //we would configure the name of the color sensor later in the
         //ftc robot controller
@@ -61,17 +73,32 @@ public class Autonomous_ColorBlue extends OpMode{
         while (modernRoboticsI2cGyro.isCalibrating())  {
             telemetry.addData("calibrating", "%s", Math.round(timer.seconds())%2==0 ? "|.." : "..|");
             telemetry.update();
+            sleep(50);
+        }
+        while(true) {
             try {
-                sleep(50);
+                String color = getColor();
+                if(color.equals("Blue")) {
+                    //red is on the right
+                    hitBall("Blue");
+                    break;
+                } else if(color.equals("Red")) {
+                    //blue is on the left
+                    hitBall("Red");
+                    break;
+                } else {
+
+                    //recalibrate
+                    calibrate();
+
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
-
-
-
-
     }
+
     public void driveForward(double power, int distance){
         leftMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
         rightMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
@@ -111,9 +138,15 @@ public class Autonomous_ColorBlue extends OpMode{
     //Pass in right for right, left for left
     public void hitBall(String direction){
         //move the servo the correct amount of degress.
+        if(direction.equals("Blue")){
+            driveForward(0.25, convert_to_REV_distance(35,0));
+        } else if(direction.equals("Red")){
+            driveForward(0.25, convert_to_REV_distance(-35,0));
+
+        }
     }
 
-    public void callibrate() {
+    public void calibrate() {
         //turn through an angle of 120 until we find the color
         double dir = Double.parseDouble(formatFloat(modernRoboticsI2cGyro.getAngularVelocity(AngleUnit.DEGREES).zRotationRate));
         double MAX_ANGLE = dir + 90;
@@ -127,58 +160,6 @@ public class Autonomous_ColorBlue extends OpMode{
     }
 
 
-    @Override
-    public void init_loop() {
-
-
-    }
-    @Override
-    public void start() {
-        //this is a way to print to the screen of the iphone app, useful for debugging.
-        start_time = System.currentTimeMillis();
-        telemetry.addData("Autonomous Color Red Starting", "");
-
-        //driveForward(to the ball);
-
-        //
-
-        while(true) {
-            try {
-                String color = getColor();
-                if(color.equals("Blue")) {
-                    //red is on the right
-                    hitBall("Right");
-                    break;
-                } else if(color.equals("Red")) {
-                    //blue is on the left
-                    hitBall("Left");
-                    break;
-                } else {
-
-                    //recalibrate
-                    callibrate();
-
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-    }
-
-
-
-
-    @Override
-    public void loop() {
-        telemetry.addData("Robot starting Will this work?", "");
-
-    }
-    @Override
-    public void stop() {
-
-    }
     public int convert_to_REV_distance(int inches, int feet) {
         double conversation_1_foot = 1120;
         return (int) ((inches/12) * conversation_1_foot + feet*conversation_1_foot);
