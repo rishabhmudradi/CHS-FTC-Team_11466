@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IntegratingGyroscope;
 import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
@@ -50,6 +51,8 @@ public class Autonomous_ColorBlue extends LinearOpMode {
 
         leftMotor = hardwareMap.dcMotor.get("left_drive"); //we would configure this in FTC Robot Controller app
         rightMotor = hardwareMap.dcMotor.get("right_drive");
+        servo = hardwareMap.get(Servo.class, "servo_jewel");
+
 
         modernRoboticsI2cGyro = hardwareMap.get(ModernRoboticsI2cGyro.class, "sensor_gyro");
         gyro = (IntegratingGyroscope)modernRoboticsI2cGyro;
@@ -65,7 +68,7 @@ public class Autonomous_ColorBlue extends LinearOpMode {
 
         //Right motor is reverse because Praneeth put right motor on backwards :/
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
-        servo.setPosition(90);
+//        servo.setPosition(90);
 
         //colorSensor = hardwareMap.colorSensor.get("name_of_color_sensor"); //we would configure the name of the color sensor later in the
         //ftc robot controller
@@ -75,6 +78,15 @@ public class Autonomous_ColorBlue extends LinearOpMode {
             telemetry.update();
             sleep(50);
         }
+
+        telemetry.addData("Servo position: " + servo.getPosition()+"", "");
+        telemetry.update();
+        servo.setPosition(0.25);
+
+        while(servo.getPosition() != 0.25) {
+            //wait until the servo is all the way down before proceding.
+        }
+
         while(true) {
             try {
                 String color = getColor();
@@ -89,8 +101,6 @@ public class Autonomous_ColorBlue extends LinearOpMode {
                 } else {
 
                     //recalibrate
-                    calibrate();
-
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -137,13 +147,23 @@ public class Autonomous_ColorBlue extends LinearOpMode {
     }
     //Pass in right for right, left for left
     public void hitBall(String direction){
+
         //move the servo the correct amount of degress.
         if(direction.equals("Blue")){
+            leftMotor.setPower(1);
+            rightMotor.setPower(1);
             driveForward(0.25, convert_to_REV_distance(35,0));
         } else if(direction.equals("Red")){
-            driveForward(0.25, convert_to_REV_distance(-35,0));
-
+            leftMotor.setDirection(DcMotor.Direction.REVERSE);
+            rightMotor.setDirection(DcMotor.Direction.FORWARD);
+            driveForward(0.25, convert_to_REV_distance(35,0));
+            leftMotor.setDirection(DcMotor.Direction.FORWARD);
+            rightMotor.setDirection(DcMotor.Direction.REVERSE);
+            //leftMotor.setPower(-1);
+            //rightMotor.setPower(-1);
         }
+
+        servo.setPosition(0); //Reset the servo arm to 90 so we can fit in box and not hinder driving
     }
 
     public void calibrate() {
@@ -153,8 +173,6 @@ public class Autonomous_ColorBlue extends LinearOpMode {
 
         while (dir < MAX_ANGLE) {
             TurnRight(0.1);
-            dir = Double.parseDouble(formatFloat(modernRoboticsI2cGyro.getAngularVelocity(AngleUnit.DEGREES).zRotationRate));
-
         }
 
     }
