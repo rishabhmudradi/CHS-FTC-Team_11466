@@ -82,10 +82,7 @@ public class Autonomous_ColorBlue extends LinearOpMode {
         telemetry.addData("Servo position: " + servo.getPosition()+"", "");
         telemetry.update();
         servo.setPosition(0.25);
-
-        while(servo.getPosition() != 0.25) {
-            //wait until the servo is all the way down before proceding.
-        }
+        Thread.sleep(2500);
 
         while(true) {
             try {
@@ -93,13 +90,15 @@ public class Autonomous_ColorBlue extends LinearOpMode {
                 if(color.equals("Blue")) {
                     //red is on the right
                     hitBall("Blue");
+                    servo.setPosition(1);
                     break;
                 } else if(color.equals("Red")) {
                     //blue is on the left
                     hitBall("Red");
+                    servo.setPosition(1);
                     break;
                 } else {
-
+                    break;
                     //recalibrate
                 }
             } catch (InterruptedException e) {
@@ -107,6 +106,10 @@ public class Autonomous_ColorBlue extends LinearOpMode {
             }
 
         }
+
+
+        telemetry.addData("Done with autonomous test", "");
+        telemetry.update();
     }
 
     public void driveForward(double power, int distance){
@@ -163,7 +166,6 @@ public class Autonomous_ColorBlue extends LinearOpMode {
             //rightMotor.setPower(-1);
         }
 
-        servo.setPosition(0); //Reset the servo arm to 90 so we can fit in box and not hinder driving
     }
 
     public void calibrate() {
