@@ -50,12 +50,14 @@ public class ConceptScanServo extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
-        servo.setPosition(0.8);
-        servo1.setPosition(-0.8);
-        // Scan servo till stop pressed.
-        /*
-        while(opModeIsActive()){
 
+        // Scan servo till stop pressed.
+
+        while(opModeIsActive()) {
+            servo.setPosition(0.8);
+            servo1.setPosition(-0.8);
+        }
+        /*
             // slew the servo, according to the rampUp (direction) variable.
             if (rampUp) {
                 // Keep stepping up until we hit the max value.
