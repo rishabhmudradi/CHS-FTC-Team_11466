@@ -26,13 +26,12 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.robotcontroller.external.samples;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuforiaNavigation;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
@@ -66,7 +65,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * is explained in {@link ConceptVuforiaNavigation}.
  */
 
-@Autonomous(name="Concept: VuMark Id", group ="Concept")
+@Autonomous(name="Concept: VuMark Id2", group ="Concept")
+//@Disabled
 public class ConceptVuMarkIdentification extends LinearOpMode {
 
     public static final String TAG = "Vuforia VuMark Sample";
@@ -103,7 +103,7 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
          * Once you've obtained a license key, copy the string from the Vuforia web site
          * and paste it in to your code onthe next line, between the double quotes.
          */
-        parameters.vuforiaLicenseKey = "Aeaj8tD/////AAAAGW6Wh+xeOELSl05fggXCvs+JRckfIhAAgllP8tM1hJ7PMV7jHtRtTppBITGm51+X50wNJNHDXpZs7/qdm40pOq3jC/3Bgz2ikwHANjDyKdT/GMyPOKCiOYmFfbwzhRfMDC6zrh3xubGspJOJY6GGhRX2sk1q/NEmlMgLnZ/i5FHlkhIe8d12BRzSKUTolwxMzDucm21O4iruVbA/6ojfW0xLN8xzu5OX8EVclVAC5ZbTdVKe8cUysBdJAUgbATu0L42HXsGqG+McRwnhhg+A5ESeLwb7Oy23gmfq1Pkfd+5sbVrZWJD5+c8Gg1B6BIKuwHvNkZl3OgngJH5EtWgTaUV2z4OZZFtBYOnY/HGxK5jr";
+        parameters.vuforiaLicenseKey = "ATsODcD/////AAAAAVw2lR...d45oGpdljdOh5LuFB9nDNfckoxb8COxKSFX";
 
         /*
          * We also indicate which camera on the RC that we wish to use.
@@ -119,7 +119,6 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
          * but differ in their instance id information.
          * @see VuMarkInstanceId
          */
-
         VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
         VuforiaTrackable relicTemplate = relicTrackables.get(0);
         relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary

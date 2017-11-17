@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.AutonomousCode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -10,16 +10,17 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 
-@Autonomous(name="Encoder Test", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
+@Autonomous(name="Drive w/ Gyro", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
 
-public class EncoderAutonomous extends OpMode {
+public class Autonomous_DriveStraight extends OpMode {
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftMotor = null;
     private DcMotor rightMotor = null;
     private ColorSensor colorSensor = null;
     private double start_time;
-    private int TICKS_PER_REVOLUTION = 1120; //TODO FIGURE OUT HOW MANY TICKS PER REVOLUTION FOR OUR SPECIFIC ENCODER
+    private int TICKS_PER_REVOLUTION = 1120;
+
     /*
          * Code to run ONCE when the driver hits INIT
          */
@@ -38,6 +39,8 @@ public class EncoderAutonomous extends OpMode {
         leftMotor.isBusy(); //tells you if it is still running to the position that u set
 
         leftMotor.setDirection(DcMotor.Direction.FORWARD);
+
+        //Right motor is reverse because Praneeth put right motor on backwards :/
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
 
         //colorSensor = hardwareMap.colorSensor.get("name_of_color_sensor"); //we would configure the name of the color sensor later in the
@@ -65,8 +68,8 @@ public class EncoderAutonomous extends OpMode {
         leftMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
         rightMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
 
-        leftMotor.setTargetPosition(-distance);
-        rightMotor.setTargetPosition(distance);
+        leftMotor.setTargetPosition(distance);
+        rightMotor.setTargetPosition(-distance);
 
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -83,8 +86,8 @@ public class EncoderAutonomous extends OpMode {
         leftMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
         rightMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
 
-        leftMotor.setTargetPosition(distance);
-        rightMotor.setTargetPosition(-distance);
+        leftMotor.setTargetPosition(-distance);
+        rightMotor.setTargetPosition(distance);
 
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -131,8 +134,17 @@ public class EncoderAutonomous extends OpMode {
         //this is a way to print to the screen of the iphone app, useful for debugging.
         start_time = System.currentTimeMillis();
         telemetry.addData("Robot starting Will this work?", "");
-        driveForward(0.5, convert_to_REV_distance(0, 7));
+        driveForward(0.25, convert_to_REV_distance(35,0));
+        TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
 
+        driveForward(0.25, convert_to_REV_distance(35, 0));
+        TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
+
+        driveForward(0.25, convert_to_REV_distance(35, 0));
+        TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
+
+        driveForward(0.25, convert_to_REV_distance(35, 0));
+        TurnRightDistance(0.25, convert_to_REV_distance(0, 1));
     }
 
     /*
@@ -141,14 +153,6 @@ public class EncoderAutonomous extends OpMode {
     @Override
     public void loop() {
         telemetry.addData("Robot starting Will this work?", "");
-//        TurnRightDistance(10, 20);
-//        TurnRightDistance(10, 20);
-//        TurnRightDistance(10, 20);
-//        TurnRightDistance(10, 20);
-//        TurnRightDistance(10, 20);
-//        TurnRightDistance(10, 20);
-//
-//        driveForward(1, 5);
 
     }
 
