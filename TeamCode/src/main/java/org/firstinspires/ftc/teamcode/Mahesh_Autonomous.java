@@ -56,7 +56,6 @@ public class Mahesh_Autonomous extends OpMode {
     /*
          * Code to run ONCE when the driver hits INIT
          */
-    @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
 
@@ -88,26 +87,21 @@ public class Mahesh_Autonomous extends OpMode {
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
      */
-    @Override
     public void init_loop() {}
 
     /*
      * Code to run ONCE when the driver hits PLAY
      */
-    @Override
     public void start() {
 
         //this is a way to print to the screen of the iphone app, useful for debugging.
 
-        start_time = System.currentTimeMillis();
         telemetry.addData("Robot starting Will this work?", "");
-
     }
 
     /*
      * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
      */
-    @Override
     public void loop() {
         telemetry.addData("Robot starting Will this work?", "");
         leftMotor.setPower(-1);
@@ -121,7 +115,6 @@ public class Mahesh_Autonomous extends OpMode {
     /*
      * Code to run ONCE after the driver hits STOP
      */
-    @Override
     public void stop() {
 
     }
